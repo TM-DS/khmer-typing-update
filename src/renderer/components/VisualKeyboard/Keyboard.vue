@@ -29,7 +29,7 @@
       <defs id="defs6289" />
       <sodipodi:namedview
         pagecolor="#ffffff"
-        borderColor="#666666"
+        border-color="#666666"
         borderopacity="1"
         objecttolerance="10"
         gridtolerance="10"
