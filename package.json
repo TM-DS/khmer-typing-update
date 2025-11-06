@@ -12,133 +12,59 @@
     "Sengseiha SAM"
   ],
   "license": "AGPL-3.0-or-later",
-  "main": "./dist/electron/main.js",
+  "main": "./dist/web/index.html",
   "scripts": {
-    "build": "node .electron-vue/build.js && electron-builder",
-    "build:dir": "node .electron-vue/build.js && electron-builder --dir",
-    "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
-    "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
-    "build:snap": "yarn build --linux snap",
-    "build:appimage": "yarn build --linux AppImage",
-    "build:deb": "yarn build --linux deb",
-    "build:portable": "yarn build --win portable",
-    "dev": "node .electron-vue/dev-runner.js",
+    "build": "webpack",
+    "dev": "webpack-dev-server --hot",
     "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter src",
-    "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src",
-    "pack": "npm run pack:main && npm run pack:renderer",
-    "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
-    "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-    "postinstall": "npm run lint:fix",
-    "start": "electron ."
+    "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src"
   },
   "dependencies": {
     "grapheme-splitter": "^1.0.4",
-    "vue": "^2.6.10",
-    "vue-i18n": "^8.11.2",
-    "vue-js-modal": "^1.3.31",
-    "vue-router": "^3.0.7"
+    "vue": "^2.7.14",
+    "vue-i18n": "^8.28.2",
+    "vue-js-modal": "^2.0.1",
+    "vue-router": "^3.6.5"
   },
   "devDependencies": {
-    "@vue/cli-plugin-eslint": "^3.9.1",
-    "@vue/cli-plugin-pwa": "^4.0.0-alpha.1",
-    "ajv": "^6.10.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^10.0.2",
-    "babel-loader": "^7.1.5",
-    "babel-minify-webpack-plugin": "^0.3.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "cfonts": "^2.4.3",
-    "chalk": "^2.4.2",
-    "copy-webpack-plugin": "^5.0.3",
-    "cross-env": "^5.2.0",
-    "css-loader": "^3.0.0",
-    "del": "^5.0.0",
-    "devtron": "^1.4.0",
-    "electron": "^4.2.6",
-    "electron-builder": "^21.0.8",
-    "electron-debug": "^3.0.1",
-    "electron-devtools-installer": "^2.2.4",
-    "eslint": "^6.0.1",
-    "eslint-config-standard": "^12.0.0",
+    "@babel/core": "^7.23.2",
+    "@babel/eslint-parser": "^7.22.15",
+    "@babel/plugin-transform-runtime": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-plugin-pwa": "^5.0.8",
+    "ajv": "^8.12.0",
+    "babel-loader": "^9.1.3",
+    "cfonts": "^3.2.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.8.1",
+    "del": "^7.1.0",
+    "eslint": "^8.53.0",
     "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^2.2.1",
-    "eslint-plugin-html": "^6.0.0",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^5.2.3",
-    "file-loader": "^4.0.0",
-    "html-webpack-plugin": "^3.2.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-vue": "^9.18.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.3",
     "listr": "^0.14.3",
-    "mini-css-extract-plugin": "0.7.0",
-    "node-loader": "^0.6.0",
-    "node-sass": "^4.12.0",
-    "rxjs": "^6.5.2",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "url-loader": "^2.0.1",
-    "vue-eslint-parser": "^6.0.4",
+    "mini-css-extract-plugin": "^2.7.6",
+    "node-loader": "^2.0.0",
+    "rxjs": "^7.8.1",
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
+    "url-loader": "^4.1.1",
+    "vue-eslint-parser": "^9.3.2",
     "vue-html-loader": "^1.2.4",
-    "vue-loader": "^15.7.0",
-    "vue-style-loader": "^4.1.0",
-    "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.35.2",
-    "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.7.2",
-    "webpack-hot-middleware": "^2.25.0",
-    "webpack-merge": "^4.2.1",
-    "workbox-webpack-plugin": "^4.3.1"
-  },
-  "build": {
-    "productName": "Khmer Typing",
-    "appId": "com.electron.khmertyping",
-    "directories": {
-      "output": "build"
-    },
-    "copyright": "Copyright © 2019 Passerelles numériques",
-    "files": [
-      "dist/electron/**/*"
-    ],
-    "dmg": {
-      "contents": [
-        {
-          "x": 410,
-          "y": 150,
-          "type": "link",
-          "path": "/Applications"
-        },
-        {
-          "x": 130,
-          "y": 150,
-          "type": "file"
-        }
-      ]
-    },
-    "mac": {
-      "icon": "build/icons/icon.icns"
-    },
-    "win": {
-      "icon": "build/icons/icon.ico"
-    },
-    "linux": {
-      "synopsis": "Learn Khmer Typing with a Visual Keyboard and games",
-      "icon": "build/icons",
-      "category": "Education"
-    },
-    "snap": {
-      "stagePackages": [
-        "libnss3",
-        "libxss1"
-      ]
-    },
-    "deb": {
-      "depends": [
-        "libnss3"
-      ]
-    }
+    "vue-loader": "^15.11.1",
+    "vue-style-loader": "^4.1.3",
+    "vue-template-compiler": "^2.7.14",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-hot-middleware": "^2.25.4",
+    "webpack-merge": "^5.10.0",
+    "workbox-webpack-plugin": "^7.0.0"
   }
 }

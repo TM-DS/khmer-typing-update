@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parserOptions: {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "sourceType": "module"
   },
   env: {
@@ -21,6 +21,7 @@ module.exports = {
     // allow async-await
     'generator-star-spacing': 0,
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'vue/multi-word-component-names': 'off'
   }
 }
