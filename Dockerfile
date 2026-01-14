@@ -1,13 +1,17 @@
 # build stage
-FROM node:lts-alpine as build-stage
+FROM node:16 as build-stage
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
 COPY . .
-RUN npm run build:web
+RUN yarn install --ignore-engines
+RUN yarn build:web
 
 # production stage
-FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /app/dist/web /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM node:16 as production-stage
+WORKDIR /app
+COPY --from=build-stage /app/dist/web ./dist/web
+COPY --from=build-stage /app/node_modules ./node_modules
+COPY --from=build-stage /app/package.json .
+COPY --from=build-stage /app/server.js .
+EXPOSE 8080
+CMD ["yarn", "start:web"]

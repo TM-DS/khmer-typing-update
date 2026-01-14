@@ -20,14 +20,32 @@ A free and open source cross platform and a progressive web application:
 
 ---
 
+#### Web Server
+
+To run the application on a Node.js web server, follow these steps:
+
+1.  **Install dependencies:**
+    ```bash
+    yarn install
+    ```
+2.  **Build the web application:**
+    ```bash
+    yarn build:web
+    ```
+3.  **Start the server:**
+    ```bash
+    yarn start:web
+    ```
+    The application will be available at http://localhost:8080.
+
 #### Docker image
 
-The web application is a client side only VueJS SPA. You can run build and a small docker image running nginx on port 80 with the sample Docker file provided:
+The web application is a client side only VueJS SPA. You can build and run a Docker image with the provided `Dockerfile`.
 
     docker build -t typing_image .
-    docker run -p 80:80 typing_image
+    docker run -p 8080:8080 typing_image
 
-And then open your browser on http://localhost/
+And then open your browser on http://localhost:8080
 
 ## Credits
 
